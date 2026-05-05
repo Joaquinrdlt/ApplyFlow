@@ -1,0 +1,268 @@
+/* Global CSS variables and page defaults. */
+:root {
+  color-scheme: light;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #e0efff 0%, #f5f7ff 40%, #f0fdf4 100%);
+  color: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Page wrapper that centers the app and adds spacing around the content. */ /*
+.app-shell {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 28px 24px 32px;
+}
+
+/* Top header card with app title, subtitle and sign-out button. */ /*
+.top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 26px 28px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: #ffffff;
+  border-radius: 26px;
+  box-shadow: 0 24px 70px rgba(37, 99, 235, 0.18);
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: clamp(2rem, 2.4vw, 2.6rem);
+}
+
+.top-bar p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.content-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(320px, 1fr);
+  gap: 24px;
+}
+
+/* Shared card styling for panels and forms. */ /*
+.card,
+.auth-card {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 26px;
+  padding: 28px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.auth-card {
+  max-width: 460px;
+  margin: 72px auto;
+}
+
+h2 {
+  margin: 0 0 22px;
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.subtitle {
+  margin: 12px 0 26px;
+  color: #475569;
+  line-height: 1.75;
+}
+
+label {
+  display: block;
+  margin-bottom: 18px;
+  color: #334155;
+  font-size: 0.96rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  background: #f8fafc;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.14);
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.button-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* Primary and secondary button styles, including hover transitions. */ /*
+button,
+button.secondary {
+  border: none;
+  border-radius: 16px;
+  padding: 14px 20px;
+  font-weight: 700;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+button {
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  box-shadow: 0 14px 25px rgba(37, 99, 235, 0.2);
+}
+
+button.secondary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  box-shadow: 0 14px 25px rgba(124, 58, 237, 0.2);
+}
+
+button:hover:not(:disabled),
+button.secondary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:disabled,
+button.secondary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-box {
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.empty-state {
+  color: #64748b;
+}
+
+.job-list {
+  display: grid;
+  gap: 20px;
+}
+
+.job-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.12);
+}
+
+.job-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.job-title p {
+  margin: 8px 0 0;
+  color: #475569;
+}
+
+/* Small badge used to show the current application status. */ /*
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.status-applied {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.status-interview {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.status-offer {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.job-notes {
+  margin: 16px 0 0;
+  color: #334155;
+  white-space: pre-wrap;
+}
+
+.job-actions {
+  margin-top: 18px;
+}
+
+.job-actions label {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .content-layout {
+    grid-template-columns: 1fr;
+  }
+}
