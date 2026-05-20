@@ -1,6 +1,6 @@
-Job Application Tracker (Work in progress)
+ApplyFLow (Work in progress)
 
-A lightweight, single-page app to track job applications from submission to offer. Users can sign up, add and annotate applications, update statuses, and keep a personal timeline of interviews and offers. Built with React and Supabase for fast development and secure per-user storage.
+A lightweight, website to track job applications from submission to offer. Users can sign up, add and annotate applications, update statuses, and keep a personal timeline of interviews and offers. Built with React and Supabase for fast development and secure per-user storage.
 
 Features
 
