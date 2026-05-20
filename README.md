@@ -1,16 +1,16 @@
-# React + Vite
+Job Application Tracker (Work in progress)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight, single-page app to track job applications from submission to offer. Users can sign up, add and annotate applications, update statuses, and keep a personal timeline of interviews and offers. Built with React and Supabase for fast development and secure per-user storage.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Sign up / sign in with Supabase Auth
+Per-user PostgreSQL storage for applications (via Supabase)
+Add, edit status, and store notes for each application
+Responsive UI and accessible form controls
+Real-time updates using Supabase subscriptions (where enabled)
+Tech stack
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend: React, Vite, JavaScript, CSS
+Backend / DB: Supabase (Postgres, Auth)
+Deployment: AWS (S3/Lambda/Amplify) for deployment
