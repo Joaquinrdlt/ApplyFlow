@@ -13,4 +13,4 @@ Tech stack
 
 Frontend: React, Vite, JavaScript, CSS |
 Backend / DB: Supabase (Postgres, Auth) |
-Deployment: AWS (S3/Lambda/Amplify) for deployment
+Deployment: AWS (S3/Lambda/Amplify) for deployment - work in progress
