@@ -2,12 +2,20 @@
 import PropTypes from 'prop-types'
 import './Auth.css'
 
-function Auth({ email, setEmail, password, setPassword, error, loading, handleAuth }) {
+function Auth({ onHome, email, setEmail, password, setPassword, error, loading, handleAuth }) {
   return (
-    <div className="app-shell">
-      <div className="auth-card">
-        <h1>Job Application Tracker</h1>
-        <p className="subtitle">Sign in or sign up to save your job applications.</p>
+    <main className="auth-page">
+      <header className="site-header auth-header">
+        <button className="brand-button" onClick={onHome}>
+          <span className="brand-mark" aria-hidden="true">A</span>
+          <span>ApplyFlow</span>
+        </button>
+        <span className="auth-header-note">YOUR SEARCH, IN GOOD ORDER</span>
+      </header>
+      <section className="auth-card">
+        <p className="eyebrow">WELCOME TO APPLYFLOW</p>
+        <h1>Pick up where your next chapter begins.</h1>
+        <p className="subtitle">Sign in or create an account to save your job applications.</p>
 
         {error && <div className="error-box">{error}</div>}
 
@@ -39,12 +47,13 @@ function Auth({ email, setEmail, password, setPassword, error, loading, handleAu
             Sign Up
           </button>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }
 
 Auth.propTypes = {
+  onHome: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   setEmail: PropTypes.func.isRequired,
   password: PropTypes.string.isRequired,
