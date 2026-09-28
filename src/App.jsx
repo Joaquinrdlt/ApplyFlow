@@ -1,16 +1,13 @@
-// React imports: useEffect manages side effects and useState stores local component state.
 import { useEffect, useState } from 'react'
 
-// Supabase client configured with your project URL and public anon key.
 import { supabase } from './supabaseClient'
 
-// App-specific styles for the tracker UI.
 import './App.css'
 
-// Component imports for different app sections.
 import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
 
+// Resolve the current URL for initial load and browser back/forward navigation.
 const getPageFromPath = () => {
   if (window.location.pathname === '/about') return 'about'
   if (window.location.pathname === '/login') return 'login'
@@ -19,27 +16,25 @@ const getPageFromPath = () => {
 }
 
 function App() {
-  // Track the logged-in Supabase session. null means no user is signed in.
+  // Remains null until Supabase restores or establishes a signed-in session.
   const [session, setSession] = useState(null)
   const [page, setPage] = useState(getPageFromPath)
 
-  // Simple auth form fields.
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  // Job application list for the current user.
+  // Applications loaded for the signed-in user.
   const [jobs, setJobs] = useState([])
 
-  // Form fields for adding a new job.
   const [company, setCompany] = useState('')
   const [position, setPosition] = useState('')
   const [status, setStatus] = useState('Applied')
   const [notes, setNotes] = useState('')
 
-  // UI state: error messages and loading indicator.
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  // Keep the URL and rendered page in sync without a routing library.
   const navigateTo = (nextPage) => {
     const path =
       nextPage === 'about'
@@ -65,7 +60,7 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
 
-  // Fetch jobs from Supabase for the current user.
+  // Fetch only this user's applications, newest first.
   const fetchJobs = async (userId) => {
     const { data, error } = await supabase
       .from('job_applications')
@@ -81,7 +76,7 @@ function App() {
     setJobs(data || [])
   }
 
-  // On component load, check whether a user is signed in and subscribe to auth changes.
+  // Restore the saved session and keep React state in sync with future auth changes.
   useEffect(() => {
     const getSession = async () => {
       const result = await supabase.auth.getSession()
@@ -114,7 +109,7 @@ function App() {
     }
   }, [])
 
-  // Handle either sign up or sign in depending on the button pressed.
+  // Share validation and loading behavior between sign-in and sign-up.
   const handleAuth = async (mode) => {
     setLoading(true)
     setError(null)
@@ -142,7 +137,6 @@ function App() {
       return
     }
 
-    // If sign-in is successful, keep the session and load jobs.
     const session = response.data?.session
     setSession(session)
     if (session) {
@@ -154,7 +148,6 @@ function App() {
     setLoading(false)
   }
 
-  // Log the user out and clear app state.
   const handleSignOut = async () => {
     await supabase.auth.signOut()
     setSession(null)
@@ -162,7 +155,6 @@ function App() {
     navigateTo('home')
   }
 
-  // Add a new application row to the user's job table.
   const handleAddJob = async (event) => {
     event.preventDefault()
     setError(null)
@@ -197,7 +189,7 @@ function App() {
     setLoading(false)
   }
 
-  // Update the status value for one existing job application.
+  // Persist a status change and refresh the list from Supabase.
   const handleStatusChange = async (jobId, nextStatus) => {
     setLoading(true)
     const { error } = await supabase
@@ -281,7 +273,7 @@ function App() {
     )
   }
 
-  // Keep the landing page public, and show auth only when the visitor chooses to continue.
+  // Keep the home page public; authentication starts only when requested.
   if (page === 'home') {
     return (
       <main className="landing-page" id="home">
@@ -376,7 +368,7 @@ function App() {
     )
   }
 
-  // If there is no authenticated session, show the sign in / sign up screen.
+  // Protected routes require a signed-in session.
   if (!session) {
     return (
       <Auth

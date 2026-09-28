@@ -1,4 +1,3 @@
-// Auth component handles sign in and sign up forms.
 import PropTypes from 'prop-types'
 function Auth({ onHome, email, setEmail, password, setPassword, error, loading, handleAuth }) {
   return (

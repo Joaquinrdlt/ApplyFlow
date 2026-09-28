@@ -25,7 +25,7 @@ body,
   min-height: 100%;
 }
 
-/* Base page styles shared by the homepage, About page, and login page. */
+/* Document-level defaults used across every page. */
 body {
   margin: 0;
   background: var(--page-bg);
@@ -747,7 +747,7 @@ button {
   }
 }
 
-/* Phone layout adjustments; change this breakpoint to tune when columns stack. */
+/* Narrow-screen layout adjustments. */
 @media (max-width: 680px) {
   .site-header,
   .hero-section {

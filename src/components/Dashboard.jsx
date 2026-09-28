@@ -1,8 +1,8 @@
-// Dashboard component shows the main app interface after login.
 import PropTypes from 'prop-types'
 import JobCard from './JobCard'
-import { JOB_STATUS, JOB_STATUSES } from '../jobApplicationStatuses'
 import './Dashboard.css'
+
+const statuses = ['Applied', 'Interview', 'Offer', 'Rejected']
 
 function Dashboard({
   session,
@@ -23,10 +23,10 @@ function Dashboard({
   onHome,
   onAbout,
 }) {
-  const rejectedCount = jobs.filter((job) => job.status === JOB_STATUS.REJECTED).length
-  const inProgressCount = jobs.length - rejectedCount
-  const interviewCount = jobs.filter((job) => job.status === JOB_STATUS.INTERVIEW).length
-  const offerCount = jobs.filter((job) => job.status === JOB_STATUS.OFFER).length
+  const inProgressCount = jobs.filter((job) => job.status !== 'Rejected').length
+  const interviewCount = jobs.filter((job) => job.status === 'Interview').length
+  const offerCount = jobs.filter((job) => job.status === 'Offer').length
+  const rejectedCount = jobs.filter((job) => job.status === 'Rejected').length
 
   return (
     <div className="app-shell">
@@ -89,7 +89,7 @@ function Dashboard({
             <label>
               Status
               <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                {JOB_STATUSES.map((option) => (
+                {statuses.map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>

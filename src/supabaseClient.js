@@ -1,5 +1,4 @@
-// Create and export a Supabase client for the whole app.
-// The URL and anon key are loaded from .env via Vite.
+// Vite exposes these VITE_ variables to the browser; use only a public Supabase key here.
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL

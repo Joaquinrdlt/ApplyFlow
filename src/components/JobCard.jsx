@@ -1,4 +1,3 @@
-// JobCard component displays a single job application with status update.
 import PropTypes from 'prop-types'
 import './JobCard.css'
 
