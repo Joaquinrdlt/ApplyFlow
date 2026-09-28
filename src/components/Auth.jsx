@@ -1,7 +1,5 @@
 // Auth component handles sign in and sign up forms.
 import PropTypes from 'prop-types'
-import './Auth.css'
-
 function Auth({ onHome, email, setEmail, password, setPassword, error, loading, handleAuth }) {
   return (
     <main className="auth-page">

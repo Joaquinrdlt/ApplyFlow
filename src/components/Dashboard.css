@@ -1,3 +1,353 @@
-/* Dashboard component styles placeholder.
-   Add dashboard layout and panel styles here when you are ready.
-*/
+.app-shell {
+   min-height: 100vh;
+   padding: 40px max(24px, calc((100% - 1180px) / 2)) 64px;
+   color: #15383e;
+   background: #eef6f4;
+}
+
+.top-bar {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 24px;
+   padding-bottom: 25px;
+   border-bottom: 1px solid #cbdedb;
+}
+
+.top-bar h1 {
+   margin: 0;
+   color: #15383e;
+   font-family: Georgia, 'Times New Roman', serif;
+   font-size: 32px;
+   font-weight: 400;
+   line-height: 1.15;
+}
+
+.top-bar p {
+   margin: 8px 0 0;
+   color: #60787a;
+   font-size: 13px;
+}
+
+.dashboard-nav {
+   display: flex;
+   align-items: center;
+   gap: 18px;
+   margin-left: auto;
+}
+
+.dashboard-nav button {
+   border: 0;
+   padding: 8px 0;
+   color: #60787a;
+   background: transparent;
+   font-size: 13px;
+   font-weight: 700;
+}
+
+.dashboard-nav button:hover {
+   color: #087f8c;
+}
+
+.dashboard-nav button:focus-visible {
+   outline: 3px solid rgba(8, 127, 140, 0.2);
+   outline-offset: 4px;
+}
+
+.top-bar button.secondary {
+   min-height: 40px;
+   border: 1px solid #087f8c;
+   border-radius: 4px;
+   padding: 0 15px;
+   color: #17656a;
+   background: transparent;
+   font-size: 13px;
+   font-weight: 700;
+   transition: color 160ms ease, background-color 160ms ease;
+}
+
+.top-bar button.secondary:hover {
+   color: #f7fffd;
+   background: #087f8c;
+}
+
+.dashboard-overview {
+   margin-top: 24px;
+   border: 1px solid #d4e2df;
+   border-radius: 7px;
+   padding: 22px 24px 20px;
+   background: rgba(255, 255, 255, 0.94);
+   box-shadow: 0 12px 32px rgba(26, 67, 70, 0.055);
+}
+
+.overview-topline,
+.overview-live,
+.overview-heading,
+.overview-stats {
+   display: flex;
+   align-items: center;
+}
+
+.overview-topline {
+   justify-content: space-between;
+   color: #718687;
+   font-size: 9px;
+   font-weight: 700;
+   letter-spacing: 1px;
+}
+
+.overview-live {
+   gap: 7px;
+}
+
+.overview-live span {
+   width: 7px;
+   height: 7px;
+   border-radius: 50%;
+   background: #4d9c79;
+}
+
+.overview-heading {
+   justify-content: space-between;
+   gap: 16px;
+   margin-top: 18px;
+}
+
+.overview-heading p {
+   margin: 0 0 4px;
+   color: #60787a;
+   font-size: 12px;
+}
+
+.overview-heading h2 {
+   margin: 0;
+   color: #1b5158;
+   font-family: Georgia, 'Times New Roman', serif;
+   font-size: 25px;
+   font-weight: 400;
+}
+
+.overview-count {
+   color: #d56650;
+   font-family: Georgia, 'Times New Roman', serif;
+   font-size: 32px;
+}
+
+.overview-stats {
+   display: grid;
+   grid-template-columns: repeat(5, minmax(0, 1fr));
+   margin-top: 18px;
+   border: 1px solid #dce8e5;
+   border-radius: 4px;
+   background: #f4f9f7;
+}
+
+.overview-stats div {
+   min-width: 0;
+   padding: 11px 14px;
+}
+
+.overview-stats div + div {
+   border-left: 1px solid #e2ece9;
+}
+
+.overview-stats strong,
+.overview-stats span {
+   display: block;
+}
+
+.overview-stats strong {
+   color: #1b5158;
+   font-family: Georgia, 'Times New Roman', serif;
+   font-size: 21px;
+   font-weight: 400;
+}
+
+.overview-stats span {
+   margin-top: 3px;
+   color: #60787a;
+   font-size: 10px;
+}
+
+.content-layout {
+   display: grid;
+   grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.5fr);
+   align-items: start;
+   gap: 22px;
+   padding-top: 28px;
+}
+
+.card {
+   min-width: 0;
+   border: 1px solid #d4e2df;
+   border-radius: 7px;
+   padding: 24px;
+   background: #fff;
+   box-shadow: 0 12px 32px rgba(26, 67, 70, 0.055);
+}
+
+.card h2 {
+   margin: 0 0 21px;
+   color: #1b5158;
+   font-family: Georgia, 'Times New Roman', serif;
+   font-size: 22px;
+   font-weight: 400;
+}
+
+.card form {
+   display: grid;
+   gap: 15px;
+}
+
+.card label,
+.job-actions label {
+   display: grid;
+   gap: 7px;
+   color: #34585b;
+   font-size: 12px;
+   font-weight: 700;
+}
+
+.card input,
+.card select,
+.card textarea,
+.job-actions select {
+   width: 100%;
+   min-width: 0;
+   border: 1px solid #cadbd8;
+   border-radius: 4px;
+   padding: 10px 11px;
+   color: #15383e;
+   background: #fbfdfc;
+   font-size: 13px;
+   font-weight: 400;
+   transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.card input,
+.card select,
+.job-actions select {
+   min-height: 42px;
+}
+
+.card textarea {
+   min-height: 104px;
+   resize: vertical;
+   line-height: 1.5;
+}
+
+.card input::placeholder,
+.card textarea::placeholder {
+   color: #91a2a1;
+}
+
+.card input:focus,
+.card select:focus,
+.card textarea:focus,
+.job-actions select:focus {
+   outline: 3px solid rgba(8, 127, 140, 0.14);
+   border-color: #328f96;
+}
+
+.card form > button {
+   min-height: 44px;
+   margin-top: 2px;
+   border: 1px solid #087f8c;
+   border-radius: 4px;
+   color: #f7fffd;
+   background: #087f8c;
+   font-size: 13px;
+   font-weight: 700;
+   transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.card form > button:hover:not(:disabled) {
+   background: #066b76;
+   transform: translateY(-1px);
+}
+
+.card form > button:disabled {
+   cursor: wait;
+   opacity: 0.65;
+}
+
+.empty-state {
+   margin: 0;
+   border: 1px dashed #cbdedb;
+   border-radius: 5px;
+   padding: 25px 18px;
+   color: #60787a;
+   background: #f5faf8;
+   font-size: 13px;
+   line-height: 1.6;
+   text-align: center;
+}
+
+@media (max-width: 760px) {
+   .app-shell {
+      padding: 26px 18px 40px;
+   }
+
+   .content-layout {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding-top: 20px;
+   }
+
+   .top-bar {
+      flex-wrap: wrap;
+      gap: 14px 20px;
+   }
+
+   .top-bar > div:first-child {
+      flex: 1 0 100%;
+   }
+
+   .dashboard-nav {
+      margin-left: 0;
+   }
+}
+
+@media (max-width: 460px) {
+   .dashboard-overview {
+      padding: 18px 16px 16px;
+   }
+
+   .overview-stats div {
+      padding: 10px 8px;
+   }
+
+   .overview-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+   }
+
+   .overview-stats div + div {
+      border-left: 0;
+   }
+
+   .overview-stats div:nth-child(n + 3) {
+      border-top: 1px solid #e2ece9;
+   }
+
+   .overview-stats span {
+      font-size: 9px;
+   }
+
+   .top-bar {
+      align-items: flex-start;
+   }
+
+   .top-bar h1 {
+      font-size: 26px;
+   }
+
+   .top-bar button.secondary {
+      min-height: 36px;
+      padding: 0 10px;
+      font-size: 12px;
+   }
+
+   .card {
+      padding: 19px;
+   }
+}

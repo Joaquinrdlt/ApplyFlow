@@ -14,6 +14,7 @@ import Dashboard from './components/Dashboard'
 const getPageFromPath = () => {
   if (window.location.pathname === '/about') return 'about'
   if (window.location.pathname === '/login') return 'login'
+  if (window.location.pathname === '/dashboard') return 'dashboard'
   return 'home'
 }
 
@@ -40,7 +41,14 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   const navigateTo = (nextPage) => {
-    const path = nextPage === 'about' ? '/about' : nextPage === 'login' ? '/login' : '/'
+    const path =
+      nextPage === 'about'
+        ? '/about'
+        : nextPage === 'login'
+          ? '/login'
+          : nextPage === 'dashboard'
+            ? '/dashboard'
+            : '/'
     if (window.location.pathname !== path || window.location.hash) {
       window.history.pushState({}, '', path)
     }
@@ -139,8 +147,8 @@ function App() {
     setSession(session)
     if (session) {
       await fetchJobs(session.user.id)
-      window.history.replaceState({}, '', '/')
-      setPage('home')
+      window.history.replaceState({}, '', '/dashboard')
+      setPage('dashboard')
     }
 
     setLoading(false)
@@ -207,7 +215,7 @@ function App() {
     setLoading(false)
   }
 
-  if (!session && page === 'about') {
+  if (page === 'about') {
     return (
       <main className="landing-page about-page">
         <header className="site-header">
@@ -217,7 +225,9 @@ function App() {
           </a>
           <nav className="site-nav" aria-label="Main navigation">
             <a className="nav-about" href="/about" aria-current="page">About</a>
-            <button className="login-button" onClick={() => navigateTo('login')}>Login</button>
+            <button className="login-button" onClick={() => navigateTo(session ? 'dashboard' : 'login')}>
+              {session ? 'Dashboard' : 'Login'}
+            </button>
           </nav>
         </header>
 
@@ -262,8 +272,8 @@ function App() {
         <section className="about-cta">
           <p className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
           <h2>Make room for forward motion.</h2>
-          <button className="primary-button" onClick={() => navigateTo('login')}>
-            Get started <span aria-hidden="true">↗</span>
+          <button className="primary-button" onClick={() => navigateTo(session ? 'dashboard' : 'login')}>
+            {session ? 'Go to dashboard' : 'Get started'} <span aria-hidden="true">↗</span>
           </button>
         </section>
         <footer className="site-footer"><span>ApplyFlow</span><span>Make room for what’s next.</span></footer>
@@ -272,7 +282,7 @@ function App() {
   }
 
   // Keep the landing page public, and show auth only when the visitor chooses to continue.
-  if (!session && page === 'home') {
+  if (page === 'home') {
     return (
       <main className="landing-page" id="home">
         <header className="site-header">
@@ -282,7 +292,9 @@ function App() {
           </a>
           <nav className="site-nav" aria-label="Main navigation">
             <a className="nav-about" href="/about" onClick={(event) => { event.preventDefault(); navigateTo('about') }}>About</a>
-            <button className="login-button" onClick={() => navigateTo('login')}>Login</button>
+            <button className="login-button" onClick={() => navigateTo(session ? 'dashboard' : 'login')}>
+              {session ? 'Dashboard' : 'Login'}
+            </button>
           </nav>
         </header>
 
@@ -294,8 +306,8 @@ function App() {
               Every opportunity, one clear view. Keep your search moving without losing track of the details.
             </p>
             <div className="hero-actions">
-              <button className="primary-button" onClick={() => navigateTo('login')}>
-                Get started <span aria-hidden="true">↗</span>
+              <button className="primary-button" onClick={() => navigateTo(session ? 'dashboard' : 'login')}>
+                {session ? 'Go to dashboard' : 'Get started'} <span aria-hidden="true">↗</span>
               </button>
               <a className="learn-button" href="#features">Learn more <span aria-hidden="true">↓</span></a>
             </div>
@@ -397,6 +409,8 @@ function App() {
       handleSignOut={handleSignOut}
       handleAddJob={handleAddJob}
       handleStatusChange={handleStatusChange}
+      onHome={() => navigateTo('home')}
+      onAbout={() => navigateTo('about')}
     />
   )
 }

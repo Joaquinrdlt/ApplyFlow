@@ -16,7 +16,12 @@ function JobCard({ job, onStatusChange }) {
           {job.status}
         </span>
       </div>
-      {job.notes && <p className="job-notes">{job.notes}</p>}
+      {job.notes && (
+        <details className="job-notes-disclosure">
+          <summary>Notes and job description</summary>
+          <p className="job-notes">{job.notes}</p>
+        </details>
+      )}
       <div className="job-actions">
         <label>
           Update status
