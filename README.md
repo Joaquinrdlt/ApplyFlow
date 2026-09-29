@@ -2,6 +2,8 @@
 
 ApplyFlow is a job application tracker for keeping roles, progress, and follow-up notes in one place. Create an account, add applications, and update each one as your search moves from application to interview, offer, or rejection.
 
+**Live demo:** [ApplyFlow](https://main.d2zlm9rvcs7zyv.amplifyapp.com/)
+
 ## Features
 
 - Sign up, sign in, and sign out with Supabase Auth
