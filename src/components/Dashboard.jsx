@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import JobCard from './JobCard'
+import ThemeToggle from './ThemeToggle'
 import './Dashboard.css'
 
 const statuses = ['Applied', 'Interview', 'Offer', 'Rejected']
@@ -22,6 +23,8 @@ function Dashboard({
   handleStatusChange,
   onHome,
   onAbout,
+  theme,
+  onToggleTheme,
 }) {
   const inProgressCount = jobs.filter((job) => job.status !== 'Rejected').length
   const interviewCount = jobs.filter((job) => job.status === 'Interview').length
@@ -39,6 +42,7 @@ function Dashboard({
           <button type="button" onClick={onHome}>Home</button>
           <button type="button" onClick={onAbout}>About</button>
         </nav>
+        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
         <button className="secondary" onClick={handleSignOut}>
           Sign Out
         </button>
@@ -157,6 +161,8 @@ Dashboard.propTypes = {
   handleStatusChange: PropTypes.func.isRequired,
   onHome: PropTypes.func.isRequired,
   onAbout: PropTypes.func.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+  onToggleTheme: PropTypes.func.isRequired,
 }
 
 export default Dashboard

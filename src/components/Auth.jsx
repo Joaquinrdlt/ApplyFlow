@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
-function Auth({ onHome, email, setEmail, password, setPassword, error, loading, handleAuth }) {
+import ThemeToggle from './ThemeToggle'
+
+function Auth({ onHome, email, setEmail, password, setPassword, error, loading, handleAuth, theme, onToggleTheme }) {
   return (
     <main className="auth-page">
       <header className="site-header auth-header">
@@ -8,6 +10,7 @@ function Auth({ onHome, email, setEmail, password, setPassword, error, loading, 
           <span>ApplyFlow</span>
         </button>
         <span className="auth-header-note">YOUR SEARCH, IN GOOD ORDER</span>
+        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       </header>
       <section className="auth-card">
         <p className="eyebrow">WELCOME TO APPLYFLOW</p>
@@ -58,6 +61,8 @@ Auth.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   handleAuth: PropTypes.func.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+  onToggleTheme: PropTypes.func.isRequired,
 }
 
 export default Auth

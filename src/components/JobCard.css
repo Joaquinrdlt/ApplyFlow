@@ -146,3 +146,57 @@
       gap: 10px;
    }
 }
+
+:root[data-theme='dark'] .job-card {
+   border-color: var(--border-soft);
+   background: var(--surface-muted);
+}
+
+:root[data-theme='dark'] .job-card:hover {
+   border-color: var(--border-strong);
+   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme='dark'] .job-title h3 {
+   color: var(--text);
+}
+
+:root[data-theme='dark'] .job-title p,
+:root[data-theme='dark'] .job-notes {
+   color: var(--text-muted);
+}
+
+:root[data-theme='dark'] .job-card .status-applied {
+   color: var(--status-neutral-ink);
+   background: var(--status-neutral-bg);
+}
+
+:root[data-theme='dark'] .job-card .status-interview {
+   color: var(--status-warm-ink);
+   background: var(--status-warm-bg);
+}
+
+:root[data-theme='dark'] .job-card .status-offer {
+   color: var(--status-offer-ink);
+   background: var(--status-offer-bg);
+}
+
+:root[data-theme='dark'] .job-card .status-rejected {
+   color: var(--status-rejected-ink);
+   background: var(--status-rejected-bg);
+}
+
+:root[data-theme='dark'] .job-notes-disclosure {
+   border-color: var(--border-soft);
+}
+
+:root[data-theme='dark'] .job-notes-disclosure summary,
+:root[data-theme='dark'] .job-actions label {
+   color: var(--accent-ink);
+}
+
+:root[data-theme='dark'] .job-actions select {
+   border-color: var(--border-strong);
+   color: var(--text);
+   background: var(--surface-input);
+}

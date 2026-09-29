@@ -6,6 +6,7 @@ import './App.css'
 
 import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
+import ThemeToggle from './components/ThemeToggle'
 
 // Resolve the current URL for initial load and browser back/forward navigation.
 const getPageFromPath = () => {
@@ -15,7 +16,26 @@ const getPageFromPath = () => {
   return 'home'
 }
 
+const getInitialAppearance = () => {
+  const systemTheme = window.matchMedia?.('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light'
+
+  try {
+    const savedTheme = window.localStorage.getItem('applyflow-theme')
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      return { theme: savedTheme, followsSystem: false }
+    }
+  } catch {
+    // Continue with the system theme when storage is unavailable.
+  }
+
+  return { theme: systemTheme, followsSystem: true }
+}
+
 function App() {
+  const [appearance, setAppearance] = useState(getInitialAppearance)
+  const { theme, followsSystem } = appearance
   // Remains null until Supabase restores or establishes a signed-in session.
   const [session, setSession] = useState(null)
   const [page, setPage] = useState(getPageFromPath)
@@ -33,6 +53,37 @@ function App() {
 
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+  }, [theme])
+
+  useEffect(() => {
+    if (!followsSystem) return
+
+    const mediaQuery = window.matchMedia?.('(prefers-color-scheme: dark)')
+    if (!mediaQuery) return
+
+    const syncWithSystem = (event) => {
+      setAppearance((current) => ({
+        ...current,
+        theme: event.matches ? 'dark' : 'light',
+      }))
+    }
+
+    mediaQuery.addEventListener('change', syncWithSystem)
+    return () => mediaQuery.removeEventListener('change', syncWithSystem)
+  }, [followsSystem])
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark'
+    try {
+      window.localStorage.setItem('applyflow-theme', nextTheme)
+    } catch {
+      // The selection still applies until this page is closed.
+    }
+    setAppearance({ theme: nextTheme, followsSystem: false })
+  }
 
   // Keep the URL and rendered page in sync without a routing library.
   const navigateTo = (nextPage) => {
@@ -220,6 +271,7 @@ function App() {
             <button className="login-button" onClick={() => navigateTo(session ? 'dashboard' : 'login')}>
               {session ? 'Dashboard' : 'Login'}
             </button>
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
           </nav>
         </header>
 
@@ -287,6 +339,7 @@ function App() {
             <button className="login-button" onClick={() => navigateTo(session ? 'dashboard' : 'login')}>
               {session ? 'Dashboard' : 'Login'}
             </button>
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
           </nav>
         </header>
 
@@ -301,7 +354,7 @@ function App() {
               <button className="primary-button" onClick={() => navigateTo(session ? 'dashboard' : 'login')}>
                 {session ? 'Go to dashboard' : 'Get started'} <span aria-hidden="true">↗</span>
               </button>
-              <a className="learn-button" href="#features">Learn more <span aria-hidden="true">↓</span></a>
+              <a className="learn-button" href="/about">Learn more <span aria-hidden="true">↓</span></a>
             </div>
             <p className="hero-note">A calmer way to keep your search in motion.</p>
           </div>
@@ -380,6 +433,8 @@ function App() {
         error={error}
         loading={loading}
         handleAuth={handleAuth}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
     )
   }
@@ -403,6 +458,8 @@ function App() {
       handleStatusChange={handleStatusChange}
       onHome={() => navigateTo('home')}
       onAbout={() => navigateTo('about')}
+      theme={theme}
+      onToggleTheme={toggleTheme}
     />
   )
 }

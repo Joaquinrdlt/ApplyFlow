@@ -351,3 +351,106 @@
       padding: 19px;
    }
 }
+
+:root[data-theme='dark'] .app-shell {
+   color: var(--text);
+   background: var(--page-bg);
+}
+
+:root[data-theme='dark'] .top-bar {
+   border-color: var(--border);
+}
+
+:root[data-theme='dark'] .top-bar h1,
+:root[data-theme='dark'] .card h2,
+:root[data-theme='dark'] .overview-heading h2,
+:root[data-theme='dark'] .overview-stats strong,
+:root[data-theme='dark'] .job-title h3 {
+   color: var(--text);
+}
+
+:root[data-theme='dark'] .top-bar p,
+:root[data-theme='dark'] .overview-heading p,
+:root[data-theme='dark'] .overview-stats span,
+:root[data-theme='dark'] .job-title p {
+   color: var(--text-muted);
+}
+
+:root[data-theme='dark'] .dashboard-nav button {
+   color: var(--text-muted);
+}
+
+:root[data-theme='dark'] .dashboard-nav button:hover {
+   color: var(--accent-ink);
+}
+
+:root[data-theme='dark'] .top-bar button.secondary {
+   border-color: var(--accent);
+   color: var(--accent-ink);
+}
+
+:root[data-theme='dark'] .top-bar button.secondary:hover {
+   color: var(--text-on-accent);
+   background: var(--accent);
+}
+
+:root[data-theme='dark'] .dashboard-overview,
+:root[data-theme='dark'] .card {
+   border-color: var(--border-soft);
+   background: var(--surface);
+   box-shadow: var(--panel-shadow);
+}
+
+:root[data-theme='dark'] .overview-topline {
+   color: var(--text-subtle);
+}
+
+:root[data-theme='dark'] .overview-stats {
+   border-color: var(--border-soft);
+   background: var(--surface-muted);
+}
+
+:root[data-theme='dark'] .overview-stats div + div,
+:root[data-theme='dark'] .overview-stats div:nth-child(n + 3) {
+   border-color: var(--border-subtle);
+}
+
+:root[data-theme='dark'] .card label {
+   color: var(--accent-ink);
+}
+
+:root[data-theme='dark'] .card input,
+:root[data-theme='dark'] .card select,
+:root[data-theme='dark'] .card textarea {
+   border-color: var(--border-strong);
+   color: var(--text);
+   background: var(--surface-input);
+}
+
+:root[data-theme='dark'] .card input::placeholder,
+:root[data-theme='dark'] .card textarea::placeholder {
+   color: var(--field-placeholder);
+}
+
+:root[data-theme='dark'] .card input:focus,
+:root[data-theme='dark'] .card select:focus,
+:root[data-theme='dark'] .card textarea:focus {
+   outline-color: rgba(90, 184, 189, 0.24);
+   border-color: var(--accent);
+}
+
+:root[data-theme='dark'] .card form > button {
+   border-color: var(--accent);
+   color: var(--text-on-accent);
+   background: var(--accent);
+}
+
+:root[data-theme='dark'] .card form > button:hover:not(:disabled) {
+   background: var(--accent-hover);
+}
+
+:root[data-theme='dark'] .empty-state {
+   border-color: var(--border-strong);
+   color: var(--text-muted);
+   background: var(--surface-muted);
+}

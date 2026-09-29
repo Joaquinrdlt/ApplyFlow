@@ -43,6 +43,36 @@ button {
   cursor: pointer;
 }
 
+.theme-toggle {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 12px;
+  color: var(--accent-ink);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.theme-toggle > span:first-child {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid rgba(8, 127, 140, 0.22);
+  outline-offset: 3px;
+}
+
 /* Main page background and shared top navigation: brand, About, and Login. */
 .landing-page {
   min-height: 100vh;
@@ -95,7 +125,6 @@ button {
   gap: 28px;
 }
 
-.nav-about,
 .login-button {
   min-height: 40px;
   border: 0;
@@ -104,7 +133,13 @@ button {
   font-weight: 600;
 }
 
+
 .nav-about {
+  min-height: 20px;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
   padding: 0;
   color: #7c877d;
   cursor: pointer;
@@ -847,6 +882,222 @@ button {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --page-bg: #102024;
+  --surface: #192b30;
+  --surface-soft: #1c3034;
+  --surface-muted: #20383d;
+  --surface-input: #15292d;
+  --text: #e6f0ee;
+  --text-muted: #b4c7c5;
+  --text-subtle: #99b4b4;
+  --accent: #5ab8bd;
+  --accent-hover: #75cbd0;
+  --accent-ink: #a0d5d3;
+  --accent-soft: #25474b;
+  --coral: #f3a084;
+  --border: rgba(187, 216, 213, 0.2);
+  --border-soft: #2c464a;
+  --border-subtle: #263e42;
+  --border-strong: #426065;
+  --text-on-accent: #10292d;
+  --status-neutral-bg: #2b4247;
+  --status-neutral-ink: #b4cbce;
+  --status-warm-bg: #4d3533;
+  --status-warm-ink: #ffc0aa;
+  --status-offer-bg: #214544;
+  --status-offer-ink: #a5dfce;
+  --status-rejected-bg: #463331;
+  --status-rejected-ink: #edb8a9;
+  --error-border: #743f3d;
+  --error-ink: #ffb7a9;
+  --error-bg: #3b2525;
+  --field-placeholder: #88a09e;
+  --panel-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+}
+
+:root[data-theme='dark'] body {
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+:root[data-theme='dark'] .landing-page,
+:root[data-theme='dark'] .auth-page {
+  background-color: var(--page-bg);
+  background-image: linear-gradient(rgba(149, 201, 199, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(149, 201, 199, 0.035) 1px, transparent 1px);
+}
+
+:root[data-theme='dark'] .site-header {
+  border-color: var(--border);
+}
+
+:root[data-theme='dark'] .brand-mark,
+:root[data-theme='dark'] .primary-button,
+:root[data-theme='dark'] .button-row button {
+  color: var(--text-on-accent);
+}
+
+:root[data-theme='dark'] .nav-about {
+  color: var(--text-subtle);
+}
+
+:root[data-theme='dark'] .nav-about:hover,
+:root[data-theme='dark'] .nav-about[aria-current='page'],
+:root[data-theme='dark'] .learn-button,
+:root[data-theme='dark'] .feature-item h3,
+:root[data-theme='dark'] .about-value h3,
+:root[data-theme='dark'] .about-note p {
+  color: var(--accent-ink);
+}
+
+:root[data-theme='dark'] .login-button:hover {
+  color: var(--text-on-accent);
+}
+
+:root[data-theme='dark'] .hero-copy h1 span,
+:root[data-theme='dark'] .learn-button span,
+:root[data-theme='dark'] .preview-count,
+:root[data-theme='dark'] .feature-number,
+:root[data-theme='dark'] .about-note-index {
+  color: var(--coral);
+}
+
+:root[data-theme='dark'] .hero-note,
+:root[data-theme='dark'] .preview-topline,
+:root[data-theme='dark'] .preview-list-heading,
+:root[data-theme='dark'] .preview-footer,
+:root[data-theme='dark'] .preview-stats span,
+:root[data-theme='dark'] .about-note-index span,
+:root[data-theme='dark'] .about-note-caption,
+:root[data-theme='dark'] .auth-header-note {
+  color: var(--text-subtle);
+}
+
+:root[data-theme='dark'] .preview-wrap,
+:root[data-theme='dark'] .auth-card {
+  border-color: var(--border-soft);
+  background: var(--surface);
+  box-shadow: var(--panel-shadow);
+}
+
+:root[data-theme='dark'] .preview-stats {
+  border-color: var(--border-soft);
+  background: var(--surface-muted);
+}
+
+:root[data-theme='dark'] .preview-stats div + div,
+:root[data-theme='dark'] .preview-list-heading,
+:root[data-theme='dark'] .preview-row {
+  border-color: var(--border-subtle);
+}
+
+:root[data-theme='dark'] .company-name {
+  color: var(--text);
+}
+
+:root[data-theme='dark'] .mark-one,
+:root[data-theme='dark'] .status-review {
+  color: #a0d5d3;
+  background: var(--accent-soft);
+}
+
+:root[data-theme='dark'] .mark-two,
+:root[data-theme='dark'] .status-interview {
+  color: var(--status-warm-ink);
+  background: var(--status-warm-bg);
+}
+
+:root[data-theme='dark'] .mark-three,
+:root[data-theme='dark'] .status-applied {
+  color: var(--status-neutral-ink);
+  background: var(--status-neutral-bg);
+}
+
+:root[data-theme='dark'] .features-section,
+:root[data-theme='dark'] .about-values,
+:root[data-theme='dark'] .about-note {
+  border-color: var(--border);
+  background: var(--surface-soft);
+}
+
+:root[data-theme='dark'] .site-footer {
+  color: var(--text-muted);
+  background: var(--surface-muted);
+}
+
+:root[data-theme='dark'] .site-footer span:first-child,
+:root[data-theme='dark'] .auth-card label {
+  color: var(--accent-ink);
+}
+
+:root[data-theme='dark'] .about-note-rule {
+  background: var(--border-strong);
+}
+
+:root[data-theme='dark'] .auth-card input {
+  border-color: var(--border-strong);
+  color: var(--text);
+  background: var(--surface-input);
+}
+
+:root[data-theme='dark'] .auth-card input::placeholder {
+  color: var(--field-placeholder);
+}
+
+:root[data-theme='dark'] .auth-card input:focus {
+  outline-color: rgba(90, 184, 189, 0.3);
+  border-color: var(--accent);
+}
+
+:root[data-theme='dark'] .button-row button.secondary {
+  color: var(--accent-ink);
+}
+
+:root[data-theme='dark'] .error-box {
+  border-color: var(--error-border);
+  color: var(--error-ink);
+  background: var(--error-bg);
+}
+
+@media (max-width: 460px) {
+  .site-header {
+    gap: 8px;
+  }
+
+  .brand-button {
+    gap: 6px;
+    font-size: 16px;
+  }
+
+  .brand-mark {
+    width: 26px;
+    height: 26px;
+    font-size: 17px;
+  }
+
+  .site-nav {
+    gap: 10px;
+  }
+
+  .login-button {
+    min-width: 64px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+
+  .theme-toggle {
+    min-height: 36px;
+    gap: 0;
+    padding: 0 9px;
+  }
+
+  .theme-toggle > span:last-child {
+    display: none;
   }
 }
 
