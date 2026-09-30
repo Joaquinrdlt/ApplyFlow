@@ -176,7 +176,9 @@ function App() {
         ? await supabase.auth.signUp({
             email,
             password,
-            options: { emailRedirectTo: window.location.origin },
+            options: {
+              emailRedirectTo: 'https://main.d2zlm9rvcs7zyv.amplifyapp.com/login',
+            },
           })
         : await supabase.auth.signInWithPassword({ email, password })
 
