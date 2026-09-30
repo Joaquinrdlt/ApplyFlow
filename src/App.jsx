@@ -116,7 +116,6 @@ function App() {
     if (!session || window.location.pathname !== '/login') return
 
     window.history.replaceState({}, '', '/dashboard')
-    setPage('dashboard')
   }, [session])
 
   // Fetch only this user's applications, newest first.
