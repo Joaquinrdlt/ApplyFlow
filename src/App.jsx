@@ -110,6 +110,14 @@ function App() {
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
+  
+  // Redirect to dashboard if the user is already signed in and on the login page.
+  useEffect(() => {
+    if (!session || window.location.pathname !== '/login') return
+
+    window.history.replaceState({}, '', '/dashboard')
+    setPage('dashboard')
+  }, [session])
 
   // Fetch only this user's applications, newest first.
   const fetchJobs = async (userId) => {
